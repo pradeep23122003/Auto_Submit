@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Submit Google Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Auto Submit Google Form</h1>
+    <button id="submitBtn">Submit Feedback</button>
+
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            // Google Form URL
+            const formURL = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSfuAQF3b4IptZ19EnJyAnJC2y-UySlobIqdlunw2YAeMwt1xw/formResponse';
+
+            // Data to be submitted
+            const data = {
+                'entry.799767796': 'pradeeps21cs@psnacet.edu.in', // Email
+                'entry.933092783': 'Pradeep S', // Student Name
+                'entry.1200482487': '921321104153', // Registration Number
+                'entry.405039190': 'PSNA', // College Name
+                'entry.1781652062': 'Great experience!', // Feedback
+                'entry.1695810417': '5', // Rate the Training Program
+                'entry.1804744046': 'Yes', // Are you Happy with the Training Program
+                // Radio buttons and checkboxes
+                'entry.15778421046': 'Option1', // Example radio button value
+                'entry.62662025': 'Yes' // Example checkbox value
+                
+            };
+
+            // Create a form element
+            const form = document.createElement('form');
+            form.action = formURL;
+            form.method = 'POST';
+            form.style.display = 'none';
+
+            // Add hidden inputs for each data entry
+            for (const [name, value] of Object.entries(data)) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = name;
+                input.value = value;
+                form.appendChild(input);
+            }
+
+            // Append the form to the body and submit it
+            document.body.appendChild(form);
+            form.submit();
+        });
+    </script>
+</body>
+</html>
